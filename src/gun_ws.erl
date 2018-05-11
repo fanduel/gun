@@ -116,10 +116,6 @@ dispatch(Rest, State0=#ws_state{frag_state=FragState,
 		{ping, Payload} ->
 			State = send({pong, Payload}, State0),
 			handle(Rest, State);
-		pong ->
-			handle(Rest, State0);
-		{pong, _} ->
-			handle(Rest, State0);
 		Frame ->
 			HandlerState = Handler:handle(Frame, HandlerState0),
 			State = State0#ws_state{handler_state=HandlerState},
