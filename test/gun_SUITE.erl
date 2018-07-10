@@ -1,4 +1,4 @@
-%% Copyright (c) 2017, Loïc Hoguin <essen@ninenines.eu>
+%% Copyright (c) 2017-2018, Loïc Hoguin <essen@ninenines.eu>
 %%
 %% Permission to use, copy, modify, and/or distribute this software for any
 %% purpose with or without fee is hereby granted, provided that the above
@@ -73,7 +73,7 @@ detect_owner_gone_ws(_) ->
 		gun:await_up(ConnPid),
 		gun:ws_upgrade(ConnPid, "/", []),
 		receive
-			{gun_ws_upgrade, ConnPid, ok, _} ->
+			{gun_upgrade, ConnPid, _, [<<"websocket">>], _} ->
 				ok
 		after 1000 ->
 			error(timeout)
